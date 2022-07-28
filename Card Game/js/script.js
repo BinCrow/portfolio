@@ -1,7 +1,7 @@
 const cards = document.querySelectorAll(".card");
 
 let matchedCrad = 0;
-let cardOne, cardTwo; // 카드를 한번 뒤집으면 일정 시간이 지나기 전까지 카드를 뒤집을수 없음.
+let cardOne, cardTwo;
 let disableDeck = false;
 
 function flipCard(e){

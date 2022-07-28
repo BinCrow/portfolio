@@ -53,6 +53,8 @@
 }
 .content-container {
 	width: 100%;
+	height: 91vh;
+	background: #282936;
 }
 .content-container__content {
 	display: none;
@@ -61,7 +63,7 @@
 	display: block;
 }
 .Publ_common .publ_img_box .hljs {
-	height: 77vh;
+	height: 86.5vh;
 	color: #e9e9f4;
 	background: #282936
 }

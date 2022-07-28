@@ -53,8 +53,10 @@
             <div class="row">
                 <div class="main_wrap">
                     <h2 class="main-title split">
-                        FRONT_END<br>
-                        DEVELOPER
+                        <!-- FRONT_END<br>
+                        DEVELOPER -->
+                        포트폴리오<br>
+                        수정중
                     </h2>
                 </div>
             </div>
@@ -483,7 +485,7 @@ $(".ban").slick({
 </div>
                             <div class="work_box">
                                 <figure class="img_wrap">
-                                    <img src="img/web/web04.jpg" alt=""/>
+                                    <img src="img/web/web040.jpg" alt=""/>
                                 </figure>
                             </div>
                             <div class="media media_img03"></div>
@@ -705,29 +707,88 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab13">
-                            <a class="tab-container__item--title" href="#">HTML</a>
+                            <a class="tab-container__item--title" href="#">timeupdate</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab14">
-                            <a class="tab-container__item--title" href="#">CSS</a>
+                            <a class="tab-container__item--title" href="#">Music,Images Get Data</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab15">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">MusicList Module</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab13" class="content-container__content target">
-<pre><code class="language-html">
+<pre><code class="language-js">
+mainAudio.addEventListener("timeupdate", (e)=>{
+    const currentTime = e.target.currentTime;
+    const duration = e.target.duration;
+    let progressWidth = (currentTime / duration) * 100;
+    progressBar.style.width = `${progressWidth}%`;
 
+    let musicCurrenTime = wrapper.querySelector(".current"),
+    musicDuration = wrapper.querySelector(".duration");
+
+    mainAudio.addEventListener("loadeddata",()=>{
+        let audioDuration = mainAudio.duration;
+        let totalMin = Math.floor(audioDuration / 60);
+        let totalSec = Math.floor(audioDuration % 60);
+        if(totalSec &lt; 10){totalSec = `0${totalSec}`;
+        }
+        musicDuration.innerText = `${totalMin} : ${totalSec}`;
+    });
+
+    let currentMin = Math.floor(currentTime / 60);
+    let currentsec = Math.floor(currentTime % 60);
+    if(currentsec &lt; 10){currentsec = `0${currentsec}`;
+    }
+    musicCurrenTime.innerText = `${currentMin} : ${currentsec}`;
+});
 </code></pre>
 </div>
 <div id="tab14" class="content-container__content">
-<pre><code class="language-css">
-
+<pre><code class="language-js">
+function loadMusic(indexNumb) {
+    musicName.innerText = allMusic[indexNumb - 1].name;
+    musicArtist.innerText = allMusic[indexNumb - 1].artist;
+    musicImg.src = `images/${allMusic[indexNumb - 1].img}.jpg`;
+    mainAudio.src = `Music/${allMusic[indexNumb - 1].src}.mp3`;
+}
 </code></pre>
 </div>
 <div id="tab15" class="content-container__content">
 <pre><code class="language-js">
-
+let allMusic = [
+  {
+    artist: "Good Bye",
+    name: "박효신",
+    img: "music-1",
+    src: "music-1"
+  },
+  {
+    artist: "First Love",
+    name: "Hisaishi-Joe",
+    img: "music-2",
+    src: "music-2"
+  },
+  {
+    artist: "야생화",
+    name: "박효신",
+    img: "music-3",
+    src: "music-3"
+  },
+  {
+    artist: "Summer",
+    name: "Hisaishi-Joe",
+    img: "music-4",
+    src: "music-4"
+  },
+  {
+    artist: "겨울잠",
+    name: "IU",
+    img: "music-5",
+    src: "music-5"
+  },
+];
 </code></pre>
 </div>
                             </div>
@@ -766,29 +827,118 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab16">
-                            <a class="tab-container__item--title" href="#">MTML</a>
+                            <a class="tab-container__item--title" href="#">switch</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab17">
-                            <a class="tab-container__item--title" href="#">CSS</a>
+                            <a class="tab-container__item--title" href="#">for() Layout</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab18">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">Block Module</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab16" class="content-container__content target">
-<pre><code class="language-html">
-
+<pre><code class="language-js">
+//event handling
+document.addEventListener("keydown", e => {
+    switch(e.keyCode){
+        case 39:
+            moveBlock("left", 1);
+            break;
+        case 37:
+            moveBlock("left", -1);
+            break;
+        case 40:
+            moveBlock("top", 1);
+            break;
+        case 38:
+            chageDirection();
+            break;
+        case 32:
+            dropBlock();
+            break;
+        default:
+            break;
+    }
+})
 </code></pre>
 </div>
 <div id="tab17" class="content-container__content">
-<pre><code class="language-css">
-
+<pre><code class="language-js">
+function prependNewLine() {
+    const li = document.createElement("li");
+    const ul = document.createElement("ul")
+    for(let j = 0; j &lt; GAME_COLS; j++) {
+        const matrix = document.createElement("li");
+        ul.prepend(matrix);
+    }
+    li.prepend(ul)
+    playground.prepend(li)
+}
+function renderBlocks( moveType = "" ){
+    const { type, direction, top, left } = tempMovingItem;
+    const movingBlocks = document.querySelectorAll(".moving");
+    movingBlocks.forEach(moving => {
+        moving.classList.remove(type, "moving");
+    })
+    BLOCKS[type][direction].some(block=>{
+        const x = block[0] + left;
+        const y = block[1] + top;
+        const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x] : null;
+        const isAvaliable = checkEmptyy(target);
+        if(isAvaliable){
+            target.classList.add(type, "moving")
+        } else {
+            tempMovingItem = { ...movingItem }
+            if(moveType === 'retry'){
+                clearInterval(downInterval)
+                showGameoverText()
+            }
+            setTimeout(()=>{
+                renderBlocks('retry');
+                if(moveType === "top"){
+                    seizeBlock();
+                }
+            },0);
+            return true;
+        }
+    })
+    movingItem.left = left;
+    movingItem.top = top;
+    movingItem.direction = direction;
+}
 </code></pre>
 </div>
 <div id="tab18" class="content-container__content">
 <pre><code class="language-js">
-
+const BLOCKS = {
+    square: [
+        [
+            [0,0],
+            [0,1],
+            [1,0],
+            [1,1],
+        ],
+        [
+            [0,0],
+            [0,1],
+            [1,0],
+            [1,1],
+        ],
+        [
+            [0,0],
+            [0,1],
+            [1,0],
+            [1,1],
+        ],
+        [
+            [0,0],
+            [0,1],
+            [1,2],
+            [1,1],
+        ],
+    ],
+}
 </code></pre>
 </div>
                             </div>
@@ -828,29 +978,87 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab19">
-                            <a class="tab-container__item--title" href="#">HTML</a>
+                            <a class="tab-container__item--title" href="#">Card Event</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab20">
-                            <a class="tab-container__item--title" href="#">CSS</a>
+                            <a class="tab-container__item--title" href="#">removeEventListener()</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab21">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">Math.random()</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab19" class="content-container__content target">
-<pre><code class="language-html">
-
+<pre><code class="language-js">
+function flipCard(e){
+    let clickedCard = e.target;// 이벤트(카드)를 클릭할때 clickedCard에 이벤트를 담는다
+    if(clickedCard !== cardOne && !disableDeck){
+        clickedCard.classList.add("flip")
+        // 한번 클릭한 카드는 일정 시간이 지나기 전까지 같은 카드를 이벤트할 수 없다.
+        if(!cardOne){
+            return cardOne = clickedCard;
+        }
+        cardTwo = clickedCard;
+        disableDeck = true;
+        let cardOneImg = cardOne.querySelector("img").src,
+        cardTwoImg = cardTwo.querySelector("img").src;
+        matchCards(cardOneImg,cardTwoImg);
+    }
+}
 </code></pre>
 </div>
 <div id="tab20" class="content-container__content">
-<pre><code class="language-css">
+<pre><code class="language-js">
+function matchCards(img1, img2){
+    // 카드 16장을 생성해주는 로직
+    if(img1 === img2){
+        matchedCrad++;
+        if(matchedCrad == 8){
+            setTimeout(()=>{
+                return shuffleCard();
+            }, 1000);
+        }
+        //같은 카드가 매치되면 해당 카드의 이벤트를 끝내어 더 이상 해당 카드의 이벤트를 실행할 수 없다.
+        cardOne.removeEventListener("click",flipCard);
+        cardTwo.removeEventListener("click",flipCard);
+        cardOne = cardTwo = ""; // 이벤트가 끝난 카드는 공백으로 처리
+        return disableDeck = false;
+    }
 
+    setTimeout(()=>{ // 서로 다른 카드를 클릭 했을시 흔들림 이벤트 생성
+        cardOne.classList.add("shake");
+        cardTwo.classList.add("shake");
+    }, 400);
+
+    setTimeout(()=>{      
+        cardOne.classList.remove("shake","flip");
+        cardTwo.classList.remove("shake","flip");
+        cardOne = cardTwo = ""; // 이벤트가 끝난 카드는 공백으로 처리
+        disableDeck = false;
+    }, 1200);
+}
 </code></pre>
 </div>
 <div id="tab21" class="content-container__content">
 <pre><code class="language-js">
+function shuffleCard() {
+    //16개 항목의 배열을 만들고 각 항목을 두 번 반복하게 한다.
+    matchedCrad = 0;
+    cardOne = cardTwo = "";
+    disableDeck = false;
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
+    // 임의적으로 배열 항목을 정렬하여 카트를 섞어 준다.
+    arr.sort(()=>Math.random() > 0.5 ? 1 : -1);
 
+    cards.forEach((card, index) => {
+        card.classList.remove("flip");
+        let ImgTag = card.querySelector("img");
+        ImgTag.src = `img/img-${arr[index]}.png`
+        card.addEventListener("click",flipCard);
+    })
+}
+
+shuffleCard();
 </code></pre>
 </div>
                             </div>
@@ -887,29 +1095,52 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab22">
-                            <a class="tab-container__item--title" href="#">HTML</a>
+                            <a class="tab-container__item--title" href="#">Axios API</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab23">
-                            <a class="tab-container__item--title" href="#">CSS</a>
-                          </li>
-                          <li class="tab-container__item" data-tab="tab24">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">toLowerCase</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab22" class="content-container__content target">
-<pre><code class="language-html">
-
+<pre><code class="language-js">
+// 단어 불러오기
+function getWords(){
+  axios
+    .get("https://random-word-api.herokuapp.com/word?number=100")
+    .then(function (response){
+      response.data.forEach((word) =>{
+        if (word.length &lt; 10){
+          words.push(word);
+        }
+      });
+      buttonChange("게임시작");
+      console.log(words);
+      // handle success
+    })
+    .catch(function (error){
+      // handle error
+      console.log(error);
+    });
+}
 </code></pre>
 </div>
 <div id="tab23" class="content-container__content">
-<pre><code class="language-css">
-
-</code></pre>
-</div>
-<div id="tab24" class="content-container__content">
 <pre><code class="language-js">
-
+// 단어 일치 체크
+function checkMatch(){
+  if (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()){
+    wordInput.value = "";
+    if (!isPlaying){
+      return;
+    }
+    score++;
+    scoreDisplay.innerText = score;
+    time = GAME_TIME;
+    const randomIndex = Math.floor(Math.random() * words.length);
+    wordDisplay.innerText = words[randomIndex];
+  }
+}
 </code></pre>
 </div>
                             </div>
@@ -948,28 +1179,77 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab25">
-                            <a class="tab-container__item--title" href="#">HTML</a>
+                            <a class="tab-container__item--title" href="#">getAttribute()</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab26">
-                            <a class="tab-container__item--title" href="#">CSS</a>
+                            <a class="tab-container__item--title" href="#">appendChild()</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab27">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">createElement()</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab25" class="content-container__content target">
-<pre><code class="language-html">
+<pre><code class="language-js">
+function checkStatus() {
+    const currenList = [...container.children];
+    const unMatchedList = currenList.filter(
+      //필터는 조건에 만족하는 el만을 리턴
+      (child, index) => Number(child.getAttribute("data-index")) !== index
+    );
+    //매치가 다 되었다면 타일의 위치값이 원래 위치값과 같아지게 된다면 게임을 종료하게됨
+    if (unMatchedList.length === 0) {
+      gameText.style.display = "block";
+      isPlaying = false;
+      clearInterval(timeInterval);
+    }
+  }
 </code></pre>
 </div>
 <div id="tab26" class="content-container__content">
-<pre><code class="language-css">
-
+<pre><code class="language-js">
+function setGame() {
+    isPlaying = true;
+    time = 0;
+    container.innerHTML = "";
+    gameText.style.display = "none";
+    clearInterval(timeInterval);
+  
+    tiles = creatImageTiles();
+    // 매서드를 호출하면 함수가 실행되고 결과물이 리턴 되면서 해당값이 tiles에 담기게됨
+    // 타일을 랜덤하게 생성하는 조건식
+    tiles.forEach((tile) => container.appendChild(tile));
+    setTimeout(() => {
+      container.innerHTML = "";
+      shuffle(tiles).forEach((tile) => container.appendChild(tile));
+      timeInterval = setInterval(() => {
+        playTime.innerText = time;
+        time++;
+      }, 1000);
+    }, 5000);
+    // 인자를 하나만 사용하면 괄호 또한 생략할 수 있으며 한줄인 경우에는 중괄호도 생략가능하다
+}
 </code></pre>
 </div>
 <div id="tab27" class="content-container__content">
 <pre><code class="language-js">
-
+function creatImageTiles() {
+    const tempArray = [];
+    Array(tileCount)
+      .fill()
+      .forEach((_, i) => {
+        const li = document.createElement("li");
+        //createElement를통해 li에 16개의 타일을 만들어 ul에 반환한다.
+        li.setAttribute("data-index", i);
+        li.setAttribute("draggable", "true"); //드래그를 계속할시 멈춤을 방지하는 조건
+        li.classList.add(`list${i}`); //템플릿을 사용하면 문자열과 변수를 함께사용할 수 있다
+  
+        tempArray.push(li);
+        // 생성된 li가 하나씩 tempArray배열 안에 담기도록 해준다
+      });
+    return tempArray;
+    //배열을 반환하여 다시 담기도록 함수 생성
+}
 </code></pre>
 </div>
                             </div>
@@ -1007,29 +1287,91 @@ $(".ban").slick({
                     <div class="tab-box">
                         <ul class="tab-container">
                           <li class="tab-container__item active" data-tab="tab28">
-                            <a class="tab-container__item--title" href="#">MTML</a>
+                            <a class="tab-container__item--title" href="#">Math.floor(Math.random()</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab29">
-                            <a class="tab-container__item--title" href="#">CSS</a>
+                            <a class="tab-container__item--title" href="#">clearInterval()</a>
                           </li>
                           <li class="tab-container__item" data-tab="tab30">
-                            <a class="tab-container__item--title" href="#">JS</a>
+                            <a class="tab-container__item--title" href="#">setInterval()</a>
                           </li>
                         </ul>
                         <div class="content-container">
 <div id="tab28" class="content-container__content target">
-<pre><code class="language-html">
-
+<pre><code class="language-js">
+function randomParagraph() {
+    // 임의의 숫자를 얻으면 항상 단락 길이보다 작습니다.
+    let randIndex = Math.floor(Math.random() * paragraphs.length);
+    typingText.innerHTML = "";
+    // 문단 배열에서 임의 항목 가져오기, 모든 문자 분할
+    // 각 문자를 span 안에 추가하고 이 span을 p 태그 안에 추가합니다.
+    paragraphs[randIndex].split("").forEach(span => {
+        let spanTag = `<span>${span}</span>`;
+        typingText.innerHTML += spanTag;
+    });
+    typingText.querySelectorAll("span")[0].classList.add("active");
+    // 키다운 또는 클릭 이벤트에 대한 입력 필드 표시
+    document.addEventListener("keydown", () => inpField.focus());
+    typingText.addEventListener("click", () => inpField.focus());
+}
 </code></pre>
 </div>
 <div id="tab29" class="content-container__content">
-<pre><code class="language-css">
-
+<pre><code class="language-js">
+function initTimeer() {
+    // time Left가 0보다 크면 시간을 줄입니다. 그렇지 않으면 타이머를 지웁니다.
+    if(timeLeft > 0) {
+        timeLeft--;
+        timeTag.innerText = timeLeft;
+    } else {
+        clearInterval(timer);
+    }
+}
 </code></pre>
 </div>
 <div id="tab30" class="content-container__content">
 <pre><code class="language-js">
-
+function initTyping() {
+    const characters = typingText.querySelectorAll("span");
+    let typedChar = inpField.value.split("")[charIndex];
+    if(charIndex &lt; characters.length - 1 && timeLeft > 0){
+        if(!isTyping) { // 타이머가 시작되면 모든 키를 클릭해도 타이머가 다시 시작되지 않습니다.
+            timer = setInterval(initTimeer, 1000);
+            isTyping = true;
+        }
+        //사용자가 문자를 입력하지 않았거나 백스페이스를 누르지 않은 경우
+        if(typedChar == null){
+            charIndex--; // decrement charIndex
+            // charIndex 범위에 잘못된 클래스가 포함된 경우에만 오류 감소
+            if(characters[charIndex].classList.contains("incorrect")){
+                mistakes--;
+            }
+            characters[charIndex].classList.remove("correct", "incorrect");
+        } else {
+            if (characters[charIndex].innerText ===typedChar) {
+                //사용자가 입력한 문자와 표시된 문자가 일치하는 경우 색을추가.
+                //바르게 입력된 문구는 녹색으로 표시가되고, 오타 입력시 붉은색으로 표시하됨.
+                characters[charIndex].classList.add("correct");
+            } else {
+                mistakes++;
+                characters[charIndex].classList.add("incorrect");
+            }
+            charIndex++; // 사용자가 입력한 올바른 문자 또는 잘못된 문자 중 하나를 charIndex 증가
+        }
+        characters.forEach(span => span.classList.remove("active"));
+        characters[charIndex].classList.add("active");
+        
+        let wpm = Math.round((((charIndex - mistakes) / 5) / (maxTime - timeLeft)) * 60);
+        // wpm 값이 0이면 값을 0으로 설정합니다.
+        wpm = wpm &lt; 0 || !wpm || wpm === Infinity ? 0 : wpm;
+        mistakeTag.innerText = mistakes;
+        wpmTag.innerText =wpm;
+        cpmTag.innerText = charIndex - mistakes; // cpm은 실수를 카운트하지 않습니다.
+    } else {
+        inpField.value = "";
+        clearInterval(timer);
+    }
+}
 </code></pre>
 </div>
                             </div>
@@ -1071,7 +1413,7 @@ $(".ban").slick({
             </div>
             <div class="web_wrap pin-wrap">
                 <div class="site_wrap site01">
-                    <h3>NO1. Vue</h3>
+                    <h3>NO1. React</h3>
                     <p>웹 표준과 웹 접근성을 준수하여 제작한 웹 사이트입니다. 웹을 사용하는 모든 사람에 있어서 제약을 주지 않고 이용할 수 있게 제작되었으며, 시각 장애를 가진 사용자를 고려하여 IR 효과를 사용하였습니다. 스크린 리더기를 통한 설명도 가능하여 제약 없이 모든 정보를 열람할 수 있도록 제작하였습니다.</p>
                     <div class="site_link">
                             <span>Slick.js</span>
@@ -1080,7 +1422,7 @@ $(".ban").slick({
                     </div>
                 </div>
                 <div class="site_wrap site02">
-                    <h3>NO2. React</h3>
+                    <h3>NO2. Vue</h3>
                     <p>미디어 쿼리를 이용하여 PC, Tablet, Mobile 등의 디바이스에서도 유연하게 이용할 수 있도록 반응형으로 제작하였습니다. 이로써 대부분의 디바이스에서 PC에서 이용하는 것과 같이 여러 정보를 열람할 수 있으며 어떤 곳에서든 편리하게 이용할 수 있도록 제작하였습니다. (최소 480PX 해상도에 맞춰 제작되었음을 알려 드립니다.)</p>
                     <div class="site_link">
                             <span>Semantic Tag</span>
@@ -1102,6 +1444,30 @@ $(".ban").slick({
         </section>
         <section id="section5_2" data-textcolor="" data-bgcolor="" data-linecolor="">
             <h2 class="sec5_title">FrontEnd Work<br>Creative Vue & React</h2>
+            <div class="front_wrap">
+                <article class="react front_common">
+                    <h2>REACT</h2>
+                    <div class="react_img fe_img"></div>
+                    <div class="react_info fe_info">
+                        <p>기존 메가박스 웹 사이트를 리뉴얼한 작업물입니다. Swiper Slide, TabMenu, Media Query 등을 사용하여 편의성을 높였으며 480PX 해상도를 기준으로 대부분의 디바이스에서 편리하게 이용할 수 있게 제작하였습니다. 배너에 Swiper Slide를 사용하여 여러 종류의 정보를 나열하였으며, TabMenu를 사용하여 카테고리별로 정보를 확인할 수 있게 하였습니다.</p>
+                        <div class="fe_link">
+                            <a href="#">Visit Website</a>
+                            <a href="#">View Code</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="vue front_common">
+                    <h2>VUE</h2>
+                    <div class="vue_img fe_img"></div>
+                    <div class="vue_info fe_info">
+                        <p>기존 메가박스 웹 사이트를 리뉴얼한 작업물입니다. Swiper Slide, TabMenu, Media Query 등을 사용하여 편의성을 높였으며 480PX 해상도를 기준으로 대부분의 디바이스에서 편리하게 이용할 수 있게 제작하였습니다. 배너에 Swiper Slide를 사용하여 여러 종류의 정보를 나열하였으며, TabMenu를 사용하여 카테고리별로 정보를 확인할 수 있게 하였습니다.</p>
+                        <div class="fe_link">
+                            <a href="#">Visit Website</a>
+                            <a href="#">View Code</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
             <article class="php">
                 <h2>PHP</h2>
                 <div class="php_img"></div>
@@ -1116,30 +1482,6 @@ $(".ban").slick({
                     </div>
                 </div>
             </article>
-            <div class="front_wrap">
-                <article class="react front_common">
-                    <h2>REACT</h2>
-                    <div class="react_img fe_img">REACT</div>
-                    <div class="react_info fe_info">
-                        <p>기존 메가박스 웹 사이트를 리뉴얼한 작업물입니다. Swiper Slide, TabMenu, Media Query 등을 사용하여 편의성을 높였으며 480PX 해상도를 기준으로 대부분의 디바이스에서 편리하게 이용할 수 있게 제작하였습니다. 배너에 Swiper Slide를 사용하여 여러 종류의 정보를 나열하였으며, TabMenu를 사용하여 카테고리별로 정보를 확인할 수 있게 하였습니다.</p>
-                        <div class="fe_link">
-                            <a href="#">Visit Website</a>
-                            <a href="#">View Code</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="vue front_common">
-                    <h2>VUE</h2>
-                    <div class="vue_img fe_img">VUE</div>
-                    <div class="vue_info fe_info">
-                        <p>기존 메가박스 웹 사이트를 리뉴얼한 작업물입니다. Swiper Slide, TabMenu, Media Query 등을 사용하여 편의성을 높였으며 480PX 해상도를 기준으로 대부분의 디바이스에서 편리하게 이용할 수 있게 제작하였습니다. 배너에 Swiper Slide를 사용하여 여러 종류의 정보를 나열하였으며, TabMenu를 사용하여 카테고리별로 정보를 확인할 수 있게 하였습니다.</p>
-                        <div class="fe_link">
-                            <a href="#">Visit Website</a>
-                            <a href="#">View Code</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
         </section>
         <!-- //section5 -->
         
@@ -1150,11 +1492,35 @@ $(".ban").slick({
             <div class="footer">
                 <div class="f_top">
                     <div class="top_l frow">
-                        <h2>Prospective Front End Developer</h2>
+                        <h2>Prepared Front End Developer</h2>
                         <ul>
-                            <li>끝없는 노력으로 발전하는</li>
-                            <li>도전을 두려워하지 않는</li>
-                            <li>남다른 분석 능력을 갖춘</li>
+                            <li>
+                                <h3>발전</h3>
+                                <p>
+                                    한 곳에 머물러있는 것이 아닌 부족한 것을
+                                    계속해서 채워 현실에 안주하지 않고
+                                    오늘보다 더 나은 내일을 위해 정진하고
+                                    발전하는 인재가 되겠습니다.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>도전</h3>
+                                <p>
+                                    새로운 기술을 배우고 익혀야 하는
+                                    직군이니 만큼 새로운 것에 도전하여야
+                                    한다면 오랜 시간이 걸려도 망설임 없이
+                                    도전하는 모습을 보여드리겠습니다.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>소통</h3>
+                                <p>
+                                    협업을 통한 완성도 높은 프로젝트를 성공
+                                    시키기 위해 매사 선배, 동료들과 끊임없는
+                                    소통이 가장 중요하다고 생각합니다 원활한
+                                    소통으로 신뢰할 수 있는 권용빈이 되겠습니다.
+                                </p>
+                            </li>
                         </ul>
                     </div>
                     <div class="top_r frow">
@@ -1197,8 +1563,5 @@ $(".ban").slick({
     <script src="javascript/horizontal.js"></script>
     <script src="javascript/main.js"></script>
     <script>hljs.highlightAll();</script>
-    <script>
-
-    </script>
 </body>
 </html>

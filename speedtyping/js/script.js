@@ -80,8 +80,7 @@ function initTimeer() {
 }
 
 function resetGame() {
-    // 호출부하 문단 함수 및
-    // 각 변수 및 요소 값을 기본값으로 재설정
+    // 문단 호출 함수와 각 변수 및 요소 값을 기본값으로 재설정
     randomParagraph();
     inpField.value = "";
     clearInterval(timer);

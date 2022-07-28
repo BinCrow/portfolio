@@ -410,32 +410,6 @@
 #section5_2 {
     border-bottom: 1px solid #2b3826;
 }
-.php {
-    border-bottom: 1px solid #2b3826;
-}
-.php h2 {
-    padding-left: 30px;
-    font-size: 4.5em;
-}
-.php .php_img {
-    width: 100%;
-    height: 60vh;
-    background: #2b3826;
-}
-.php .php_info {
-    padding: 30px;
-}
-.php_info p {
-    display: block;
-    padding: 30px 0;
-    font-size: 1.4em;
-    font-family: 'GmarketSans';
-    font-weight: 300;
-}
-.php_info .front_link{
-    display: flex;
-    justify-content: right;
-}
 .front_link a{
     display: block;
     padding: 5px 30px;
@@ -454,6 +428,7 @@
 .front_wrap {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #2b3826;
 }
 .front_common h2{
     padding-left: 30px;
@@ -468,16 +443,12 @@
     height: 60vh;
 }
 .react_img {
-    /* background: url(/img/web01.jpg) no-repeat center center; */
-    background: #000;
+    background: url(/img/react.png) no-repeat center center;
     background-size: cover;
-    color: #000;
 }
 .vue_img {
-    /* background: url(/img/web02.jpg) no-repeat center center; */
-    background: #fff;
+    background: url(/img/vue.png) no-repeat center center;
     background-size: cover;
-    color: #fff;
 }
 .front_common .fe_info {
     padding: 30px;
@@ -504,10 +475,37 @@
     box-shadow: inset 0 0 0 2em #2b3826;
     color: #fff;
 }
-.fe_link a:last-child {margin-left: 20px;}
+.fe_link a:last-child {
+    margin-left: 20px;
+}
+.php h2 {
+    padding-left: 30px;
+    font-size: 4.5em;
+}
+.php .php_img {
+    width: 100%;
+    height: 60vh;
+    background: #2b3826;
+}
+.php .php_info {
+    padding: 30px;
+}
+.php_info p {
+    display: block;
+    padding: 30px 0;
+    font-size: 1.4em;
+    font-family: 'GmarketSans';
+    font-weight: 300;
+}
+.php_info .front_link{
+    display: flex;
+    justify-content: right;
+}
 
 /* Contact */
-.frow {padding: 50px;}
+.frow {
+    padding: 50px;
+}
 #contact {
     overflow: hidden;
 }
@@ -610,11 +608,25 @@
 .top_l ul{
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px;
 }
 .top_l li{
-    font-size: 1.2em;
+    padding: 0 30px 0 30px;
+    box-sizing: border-box;
 }
+.top_l li:first-child {
+    padding-left: 0;
+}
+.top_l li:last-child {
+    padding-right: 0;
+}
+.top_l li h3 {
+    font-size: 1.6em;
+}
+.top_l li p {
+    font-size: 1.3em;
+}
+.top_l li:first-child p {padding-left: 0;}
+.top_l li:last-child p {padding-right: 0;}
 .top_r {
     width: 30%;
     position: relative;
