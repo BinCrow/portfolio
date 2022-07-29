@@ -63,6 +63,23 @@ tabsbtnView.forEach((e, index) => {
     });
 });
 
+const tabsbtnViews = document.querySelectorAll('.front_link .code_view'),
+      tabscodeViews = document.querySelectorAll('.front_common .tab-box');
+
+tabsbtnViews.forEach((e, index) => {
+    e.addEventListener('click', () => {
+        if(!e.classList.contains('close')) {
+            e.classList.add('close');
+            e.innerText = 'Close'; 
+            tabscodeViews[index].style.display = 'block';
+        } else {
+            e.classList.remove('close');
+            e.innerText = 'View Code'; 
+            tabscodeViews[index].style.display = 'none';
+        }
+    });
+});
+
 //버튼 active 온/오프
 $('.code_view, .tab-link').click(function(){
     $('.code_view, .tab-link').not(this).removeClass('active');
