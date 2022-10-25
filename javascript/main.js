@@ -109,7 +109,7 @@ tabContents.forEach((target) => {
 
 // 메인 이펙트
 function loading(){
-    //메인 타이틀 문장 한개씩 분할하기
+    //메인 타이틀 분할
     document.querySelectorAll(".split").forEach((cut) => {
         let splitText = cut.innerText;
         let splitWrap = splitText.split("").join("</span><span aria-hidden='true'>");
@@ -118,13 +118,14 @@ function loading(){
         cut.setAttribute("aria-label", splitText);
     });
 
+    // 메인 숨김
     gsap.set("#header",{top:-100});
     gsap.set("#section1",{opacity:0});
     gsap.set("#section1 .main_wrap",{y:10, opacity:0});
     gsap.set(".split span",{y:50, opacity:0 });
     gsap.set("#section2",{y:100, opacity:0,});
 
-
+    // 메인 설정시간 이후 보임
     setTimeout(() => {
         const tl = gsap.timeline();
         tl.to("#header",{duration:0.5, top:0});

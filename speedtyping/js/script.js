@@ -4,7 +4,7 @@ timeTag = document.querySelector(".time span b"),
 mistakeTag = document.querySelector(".mistake span");
 wpmTag = document.querySelector(".wpm span"),
 cpmTag = document.querySelector(".cpm span"),
-tryAgainBtn = document.querySelector("button");
+tryAgainBtn = document.querySelector(".typing_button");
 
 let timer,
 maxTime = 60,

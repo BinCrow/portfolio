@@ -127,7 +127,7 @@
     align-items: flex-end;
 }
 .pin-wrap .site_wrap {
-    min-width: 40vw;
+    min-width: 45vw;
     height: 35vh;
     border-right: 1px solid #fff;
     background:#2b3826;
@@ -140,22 +140,37 @@
     font-size: 4.5em; 
     margin-bottom: 30px;
 }
+.site_wrap .site_flxe {
+    display: flex;
+    justify-content: space-between;
+}
 .site_wrap p {
+    width: 60%;
     font-size: 1.4em;
     line-height: 1.5em;
     font-family: 'GmarketSans';
     font-weight: 300;
-    padding-bottom: 50px;
+}
+.site_wrap .site_link {
+    width: 40%;
+    padding-left: 50px;
 }
 .site_wrap .site_link span {
     position: relative;
-    display: inline-block;
-    margin: 0 5px;
+    display: block;
+    margin: 10px 0;
     padding: 5px 15px;
     border: 1px solid #fff;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
     font-size: 1.4em;
+    text-align: center;
+}
+.site_wrap .site_link span:first-child {
+    margin-top: 0;
+}
+.site_wrap .site_link span:last-child {
+    margin-bottom: 0;
 }
 .site_wrap .site_link span:hover {
     box-shadow: inset 0 0 0 2em #fff;
@@ -212,6 +227,9 @@
     line-height: 52px;
     color: #2b3826;
 }
+.Publ_common .publ_box .code_view {
+    margin-top: 10px;
+}
 .Publ_common .publ_box a:hover {
     box-shadow: inset 0 0 0 2em #2b3826;
     color: #fff;
@@ -256,32 +274,17 @@
 }
 .Publ_common .publ_img_box p {
     display: block;
-    margin: 0 0 120px 50px;
+    margin: 0 0 50px 50px;
     font-size: 1.4em;
     font-family: 'GmarketSans';
     font-weight: 300;
 }
-.Publ_common .publ_img_box .code_view {
-    display: block;
-    width: 260px;
-    height: 50px;
-    position: absolute;
-    right: 30px; bottom: 30px;
-    border: 1px solid #2b3826;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-    font-family: 'GmarketSans';
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: 300;
-    line-height: 52px;
-    color: #2b3826;
-}
-.Publ_common .publ_img_box a:hover {
+
+.Publ_common a:hover {
     box-shadow: inset 0 0 0 2em #2b3826;
     color: #fff;
 }
-.Publ_common .publ_img_box a.active {
+.Publ_common a.active {
     background: #2b3826;
     color: #fff;
 }
@@ -387,7 +390,7 @@
     display: block;
     width: 14.5vw;
     height: 35px;
-    margin: 0 10px;
+    margin: 0 25px;
     border: 1px solid #fff;
     border-radius: 5px;
     font-family: 'GmarketSans';
@@ -412,7 +415,7 @@
 }
 .front_link a{
     display: block;
-    width: 6vw;
+    width: 7vw;
     padding: 5px 30px;
     border: 1px solid #2b3826;
     border-radius: 5px;
@@ -448,7 +451,7 @@
     background-size: cover;
 }
 .vue_img {
-    background: url(/img/vue.png) no-repeat center center;
+    background: url(/img/vue2.png) no-repeat center center;
     background-size: cover;
 }
 .front_common .fe_info {
@@ -464,7 +467,7 @@
 .fe_info .fe_link{display: flex; justify-content: right;}
 .fe_link a{
     display: block;
-    width: 6vw;
+    width: 7vw;
     padding: 5px 30px;
     border: 1px solid #2b3826;
     border-radius: 5px;
@@ -703,7 +706,6 @@
 .bottom_r ul li span {
     font-size: 21px;
     font-weight: 300;
-    letter-spacing: 0.2em;
 }
 /* 미디어쿼리 */
 @media (max-width: 1280px){
